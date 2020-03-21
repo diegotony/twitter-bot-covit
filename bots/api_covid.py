@@ -3,11 +3,11 @@ import datetime
 import json
 
 
-URL = "http://covid-openknowledge.herokuapp.com/covidOpenKnowledge/api/v1/noticias"
-
+URL="http://covid-openknowledge.herokuapp.com/covidOpenKnowledge/api/v1/noticias"
 
 def post_noticias(data):
-    payload = {
+    print()
+    payload={
         # "estadoCuarentena": "true",
         # "fecha": str(datetime.datetime.utcnow()),
         "fuente": str(data['fuente']),
@@ -15,6 +15,7 @@ def post_noticias(data):
         "titulo": str(data['titulo'])
     }
     data = json.dumps(payload)
-    r = requests.post(URL, data=data, headers={
-                      'Content-Type': 'application/json', "charset": "UTF-8"},)
-    return r.json()
+    r = requests.post(URL, data = data,headers={'Content-Type': 'application/json',"charset":"UTF-8"},)
+    # print(r.json())
+    # return r
+    return r.text
