@@ -8,7 +8,6 @@ from listener import Listener
 import os
 
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 listener = Listener()
@@ -17,11 +16,8 @@ listener = Listener()
 def main():
     api = create_api()
     while True:
-
-
         t = get_last_tweet(api)
         urls = t.retweeted_status.entities['urls']
-        # print(urls)
         url = ""
         for i in urls:
             url = i['url']
@@ -31,9 +27,10 @@ def main():
             "resumen": t.retweeted_status.text,
             "titulo": t.text
         }
-
-        print(noticia)
-        # post_noticias(noticia)
+        post = post_noticias(noticia)
+        print("#######DATA#########")
+        print(post)
+        print("####################")
 
         logger.info("Waiting...")
         time.sleep(3600)
